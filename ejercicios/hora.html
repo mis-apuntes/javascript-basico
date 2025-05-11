@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Reloj</h1>
+    <button id="btnTime">Mostrar hora atual</button>
+    <h3 id="showTime"></h3>
+
+    <script>
+        (function() {
+            var btnTime = document.getElementById('btnTime');
+            var tagMostrar = document.getElementById('showTime');
+    
+            btnTime.addEventListener('click', function(e){
+                var hoy = new Date();
+                tagMostrar.textContent = hoy.getHours() +':'+ hoy.getMinutes() +':'+ hoy.getSeconds();
+            })
+        })()
+    </script>
+</body>
+</html>
