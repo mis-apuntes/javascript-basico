@@ -1,8 +1,8 @@
 # BOM (Browser Object Model)
 
-El BOM es el modelo de objetos del navegador. Son objetos que modelan cosas como el historial, pantalla, etc (información sobre el navegador).
+El BOM es el modelo de objetos del navegador. Son objetos que modelan cosas como el historial, pantalla, etc (**información sobre el navegador**).
 
-A traves de las propiedades y métodos del objeto global `window` se pueden acceder a informacion sobre el navegador y sus componentes.
+A través de las propiedades y métodos del objeto global `window` se pueden acceder a información sobre el navegador y sus componentes.
 
     window -----|------ document -----|---- forms
                 |                     |
@@ -37,9 +37,9 @@ __Propiedades:__
 
 - `.outerHeight`  -> devuelve el alto del navegador
 
-- `.screenX`  posicion X de la ventana respecto al borde izquierdo de la pantalla
+- `.screenX`  posición X de la ventana respecto al borde izquierdo de la pantalla
 
-- `.screenY` posicion Y de la ventana respecto al borde superior de la pantalla
+- `.screenY` posición Y de la ventana respecto al borde superior de la pantalla
 
   La posición X=0 y Y=0 es la parte superior izquierda de la pantalla.
 
@@ -54,12 +54,12 @@ Métodos
 - `.open('url')` -> abre una nueva ventana
 - `.close()`     -> cierra una ventana
 - `.moveTo(x, y)`    -> mover la ventana
-- `.resizeTo(w, h)`  -> redimensiona la ventana
+- `.resizeTo(w, h)`  -> re-dimensiona la ventana
 - `.scrollTo(x,y)`  -> mueve el scroll a las coordenadas indicadas
-- `.scrollBy(x,y)`  -> mueve el scroll a partir de su posicion actual
+- `.scrollBy(x,y)`  -> mueve el scroll a partir de su posición actual
 - `.print()`       -> imprimir los contenidos de la página actual
 
-> alert(), prompt() y confirm(), __No es recomendado su uso__, porque bloquea la ejecución de JS hasta que se cierre la ventana emergente. 
+> **Nota**: `alert()`, `prompt()` y `confirm()`, __No es recomendado su uso__, porque bloquea la ejecución de JS hasta que se cierre la ventana emergente. 
 
 Ejemplo:
 ```javascript
@@ -76,7 +76,7 @@ boton.addEventListener('click',function(){
 
 Contiene información sobre el navegador
 
-No hay estándares definidos sobre la informacion que devuelve cada navegador, sin embargo, todos los principales navegadores lo admiten.
+No hay estándares definidos sobre la información que devuelve cada navegador, sin embargo, todos los principales navegadores lo admiten.
 
 El siguiente código se puede usar para obtener información básica sobre el navegador
 ```javascript
@@ -88,13 +88,13 @@ navigator.appVersion, // Get the Version of Browser
 navigator.platform // Get the platform for which browser is compiled
 ```
 
-Dentro del objeto navigator está el objeto geolocation que permite la geolocalización.
+Dentro del objeto `navigator` está el objeto `geolocation` que permite la geolocalización.
 
 ```javascript
 var geolocation = navigator.geolocation;
 ```
 
-Tambien se puede usar para obtener información el dispositivo movil
+También se puede usar para obtener información el dispositivo móvil
 
 ```javascript
 // Obtener el nivel actual de la batería
@@ -117,7 +117,9 @@ if(window.chrome !== undefined){
 > No hay una manera única de saber que navegador está usando el usuario. Pero se puede usar la siguiente sugerencia [How to detect Safari, Chrome, IE, Firefox and Opera browser?](https://stackoverflow.com/questions/9847580/how-to-detect-safari-chrome-ie-firefox-and-opera-browser)
 
 ## Location
-Location da información sobre la URL. Ejemplo; 
+`location` da información sobre la URL.
+
+Consideremos la siguiente URL; 
 
 `https://developer.mozilla.org/es/docs/Learn/JavaScript#prerrequisitos`
 
@@ -128,13 +130,13 @@ Propiedades:
 - `.host`   -> devuelve la info del host. p.e. `developer.mozilla.org`
 - `.hostname` -> 
 - `.protocol` -> devuelve el protocolo (http, https), p.e. `https:`
-- `.port`     -> devuelve el puerto, p.e. ?????
+- `.port`     -> devuelve el puerto, p.e. `443`
 - `.origin` -> devuelve el **dominio** (sin path). p.e. `https://developer.mozilla.org`
 - `.pathname` -> el path (sin el dominio p.e.` /es/docs/Learn/JavaScript`)
 
 Métodos:
 
-- `assign('url')`  -> redirecciona hacia la URL
+- `assign('url')`  -> redirecciona hacia una URL
 - `replace('url')` -> redirecciona sin meter la página al historial
 
 Ejemplo: Redirigir con href
@@ -142,6 +144,7 @@ Ejemplo: Redirigir con href
 var navigate = document.getElementById('navigate');
 navigate.addEventListener('click',function(){
     location.href ="www.google.com";
+    // no seria location.assing('www.google.com') o es lo mismo?
 });
 ```
 
@@ -152,7 +155,7 @@ Contiene el historial de la pestaña activa
 Métodos:
 - `back()`     -> Retroceder
 - `forward()`  -> Avanzar
-- `go(<numero>)` -> Moverse en el historial, numeros positivos avanza hacia adelante y con negativos hacia atras.
+- `go(<numero>)` -> Moverse en el historial, números positivos avanza hacia adelante y con negativos hacia atrás.
 
 > Por seguridad no se puede acceder a las URL del historial
 
@@ -160,7 +163,7 @@ Métodos:
 Existen dos métodos del objeto `window` para controlar la ejecución del código según el tiempo:
 
 ## setTimeout
-Ejecutará el codigo despues de un cierto tiempo. 
+Ejecutará el código después de un cierto tiempo. 
 
 Sintaxis: `setTimeout(fn, delay)`, 
 - `fn`: una función que contiene el código que se ejecutará
@@ -184,13 +187,13 @@ setInterval(function(){
 }, 2000)
 ```
 
-Para detenr el intervalo, `clearInterval()`. 
+Para detener el intervalo, `clearInterval()`. 
 ```javascript
 var btn = document.getElementById('btn');
 
 var intervalo = setInterval(function(){
-        console.log("Se imprimirá cada 2 segundo")
-    }, 2000)
+                  console.log("Se imprimirá cada 2 segundo")
+                }, 2000)
 
 btn.addEventListener("click", function(e){
     clearInterval(intervalo)    //para detener el intervalo

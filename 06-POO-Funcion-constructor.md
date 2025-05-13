@@ -1,6 +1,6 @@
 # Funcion constructor
 
-JavaScript no tenia clases, por lo que la POO se consiguia a través de constructores y prototipos. ES6 ya incorpora clases.
+JavaScript no tenia clases, por lo que la POO se conseguia a través de constructores y prototipos. Pero ES6 ya incorpora clases.
 
 En JS existen constructores nativos del lenguaje.
 ```javascript
@@ -30,12 +30,12 @@ p1.presentarse();   //"Me llamo Carlos"
 var p2 = new Persona("Luis", "Quispe")
 p2.apellido     //"Quispe"
 ```
-> Por conveción la primera letra empieza en mayúscula
+> Por convención la primera letra de la clase empieza en mayúscula
 
-## Propidades públicas y privadas
+## Propiedades públicas y privadas
 Las __propiedades públicas__ son accesibles y modificables desde las instancias.
 
-En cambio las __propiedades privadas__ no se puede acceder a su valor desde afuera, para accederlos es atraves de sus métodos.
+En cambio las __propiedades privadas__ no se puede acceder a su valor desde afuera, para accederlos es a través de sus métodos.
 
 ```javascript
 function Pais(nombre, capital){
@@ -62,17 +62,17 @@ bolivia.setIdioma("Quechua");
 console.log(bolivia.getIdioma()); //"Quchua"
 ```
 
-## Métodos públicas y privados
-Los métodos públicos son funciones accesibles desde las instancias.
+## Métodos públicos y privados
+Los **métodos públicos** son funciones que se pueden **acceder desde las instancias**.
 
-Los métodos privados solo pueden ser invocados desde funciones públicas.
+Los **métodos privados** solo pueden ser invocados desde funciones públicas del mismo objeto.
 
 ```javascript
 function Persona(nom, ap){
   this.nombre = nom;
   this.apellido = ap;
     
-  this.saludar = function(){    // metodo público
+  this.saludar = function(){    // método público
     return "Buenos días, me llamo " + nombreCompleto(); 
   };
     
@@ -93,7 +93,7 @@ function Prestamo() {
     //Definimos la clase Prestamo ...
 }
 
-// Definiendo una propiedad de clase
+// Definiendo una propiedad de clase/atributo estático
 Prestamo.interes = 0.12;
 
 var p = new Prestamo();

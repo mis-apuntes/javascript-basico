@@ -10,7 +10,7 @@ Por ejemplo:
 
 Estos eventos son capturados por el navegador y con JavaScript podemos ejecutar funciones en el momento que ocurran.
 
-Todo evento está asociado a un elemento HTML. sin embargo también podrían asociarse al objeto global.
+Todo evento está asociado a un elemento HTML. sin embargo también podrían asociarse al objeto global `window`.
 
 Sintaxis: 
 
@@ -18,9 +18,9 @@ Sintaxis:
 <elementoHtml>.addEventListener(<tipoEvento>, <callBack>);
 ```
 
-+ `<elementoHtml>`: es un objeto que debe hacer referencia a una etiqueta.
++ `<elementoHtml>`: es un objeto que debe hacer referencia a una etiqueta html.
 
-+ `<tipoEvento>`: es un string que indica el tipo de evento que va a escuchar.
++ `<tipoEvento>`: es un string que indica el tipo de evento que va a escuchar. p.e. *click*, *keypress*, etc. (ver [Tipos de eventos](#tipos-eventos))
 
 + `<callBack>`: es la función que se ejecutará si se activa el evento.
 
@@ -54,13 +54,13 @@ Ejemplo 2: Obtener el tamaño de la ventana (evento asociado al objeto global)
 El objeto event tiene información sobre el evento.
 
 ```javascript
-var elementoHtml = documento.getElementById("btn");
+var boton = documento.getElementById("btn");
 
-elementoHtml.addEventListener("click", function(event) {
+boton.addEventListener("click", function(event) {
     console.log("Evento disparado")
     console.log(event)  // 'event' es un objeto que tiene informacion extra sobre el evento
-    console.log(event.x) //posicon 'x' de donde se hizo click
-    console.log(event.y) //posicon 'y' de donde se hizo click
+    console.log(event.x) //posicion 'x' de donde se hizo click
+    console.log(event.y) //posicion 'y' de donde se hizo click
     
     console.log(e.target) // elemento sobre el cual se hizo click
     console.log(e.which)  // 1: clic izq, 3: clic der
@@ -69,8 +69,8 @@ elementoHtml.addEventListener("click", function(event) {
 ```
 > Por convención se suele llamar "e" o "event".
 
-### Prevent Default
-Es un método del objeto "event", que evita que se tengan comportamientos predeterminados de ciertos eventos.
+### Método `preventDefault()`
+Es un método del objeto "event", que evita que se tengan comportamientos predeterminados de ciertos eventos:
 - En formularios evita que se haga 'Submit'.
 - En enlaces evita que se redireccione. 
 - Cuando se pulsan las 'teclas flecha' evita el scroll.
@@ -83,12 +83,14 @@ linkExt.addEventListener("click", function(e){
 })
 ```
 
-### Stop Propagation
-Cuando un evento se activa, tambien se activan los eventos de sus ancestros (propagación de evento). Para detener la propagación, se utiliza `.stopPropagation()` del objeto "event" 
+### Método `stopPropagation()`
+Cuando un evento se activa, también se activan los eventos de sus ancestros (propagación de evento). Para detener la propagación, se utiliza `.stopPropagation()` del objeto "event" 
 
 ```javascript
 /* html
-<div id="container"> <button id="button">pulsar</button> </div>
+<div id="container"> 
+	<button id="button">pulsar</button> 
+</div>
 */
 
 var container = document.getElementById('container');
@@ -104,6 +106,8 @@ container.addEventListener('click', function(){
 });
 ```
 ## Tipos de eventos
+
+<a id="tipos-eventos"></a>
 
 ### Relacionados con el mouse:
 

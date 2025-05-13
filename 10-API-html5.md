@@ -9,13 +9,17 @@ Permite dibujar sobre un área.
 ```javascript
 // Obtener el elemento
 var canvas = document.getElementById('lienzo');
-// Obtener el contexto
-// Sobre el contexto se dibujará usando métodos y propiedades
-var c = canvas.getContext('2d');
+
+// Obtener las dimensiones
 var w = canvas.width;
 var h = canvas.height;
+
+// Obtener el contexto
+var c = canvas.getContext('2d');
+// Sobre el contexto se dibujará usando métodos y propiedades
+c.strokeStyle = "red";
 ```
-Para dibujar con canvas se realiza a traves de métodos y propiedades.
+Para dibujar con canvas se realiza a través de métodos y propiedades.
 
 PROPIEDADES
 
@@ -23,7 +27,7 @@ PROPIEDADES
     .lineWidth    -> el ancho de la linea
     .fillStyle    -> color de relleno
 
-METODOS
+MÉTODOS
 
     .stroke()     -> dibuja una linea
     .fill()       -> dibuja un relleno
@@ -79,7 +83,7 @@ c.arc(w/2, h/2, 120,0, Math.PI * 2);
 c.fillStyle = "red";
 c.fill();
 ```
-BUSCAR UN EJERCICIO INTERESANTE
+<!--BUSCAR UN EJERCICIO INTERESANTE-->
 
 # Audio y video
 
@@ -89,7 +93,7 @@ EVENTOS
     'pause' (cuando se pausa)
     'ended' (cuando termina el video)
 
-METODOS
+MÉTODOS
 
     play()
     pause()
@@ -118,32 +122,23 @@ video.addEventListener('ended', function(){
   console.log("el video ha terminado");
 });
 ```
-BUSCAR UN EJERCICIO INTERESANTE
+<!--BUSCAR UN EJERCICIO INTERESANTE-->
 
 # Geolocalización
 
-Se usa el objeto `gelocation` que es propiedad del objeto `navigator`,
+Se usa el objeto `gelocation` que es una propiedad del objeto `navigator`,
 tiene tres métodos relevantes:
 
     .getCurrentPosition() -> detecta la posicion actual
     .watchPosition()      -> detecta la posicion actual y va actualizandola en el tiempo.
     .clearWatch()         -> detiene watchPosition
 
-`navigator.geolocation.getCurrenPosition(exito,error)`
+El método `navigator.geolocation.getCurrenPosition(exito,error)` recibe dos *callbacks*:
 
-- exito -> function si se logra determinar la posicion (requerido)
-- error -> function si no se logra determinar la posicion
+- exito, si se logra determinar la posición (requerido)
+- error, si no se logra determinar la posición (opcional)
 
-La funcion exito() recibe un parámetro que almacena los datos de la geolocalizacion en el objeto Position
-
-```javascript
-// Para comprobar si el navegador es compatible con la API de geolocalización:
-if(navigator.geolocation){
-    // Horray! Support!
-} else {
-    // No support...
-}
-```
+El *callback* "exito" recibe un parámetro (objeto de la clase Position) que almacena los datos de la geolocalización.
 
 Ejemplo
 ```javascript
@@ -154,10 +149,20 @@ miUbicacion.getCurrentPosition(function(p){
 });
 ```
 
+ Para comprobar si el navegador es compatible con la API de geolocalización:
+
+```js
+if(navigator.geolocation){
+    // Horray! Support!
+} else {
+    // No support...
+}
+```
+
 # Almacenamiento web
 
-## __LocalStorage__
-El objeto localStorage proporciona un almacenamiento de valor-clave persistente (pero no permanente) de cadenas. 
+## LocalStorage
+El objeto localStorage proporciona un almacenamiento del tipo valor-clave persistente (pero no permanente) de cadenas.
 
 Los valores almacenados persisten indefinidamente a menos que el usuario borre los datos guardados o configure un límite de caducidad.
 
@@ -170,7 +175,7 @@ localStorage.setItem('name', 'John Smith');
 // Obtener un dato
 var data = localStorage.getItem('name'); // "John Smith"
 
-// Eliminar un datos
+// Eliminar un dato
 localStorage.removeItem('name');
 
 // Borrar todo el almacenamiento
@@ -180,9 +185,7 @@ localStorage.clear();
 localStorage.length;
 ```
 
-### Guardar datos estructurados
-Se puede usar JSON
-
+### Guardar datos estructurados (JSON)
 ```javascript
 var players = [{name: "Tyler", score: 22}, {name: "Ryan", score: 41}];
 
@@ -191,9 +194,7 @@ localStorage.setItem('players', JSON.stringify(players));
 console.log(JSON.parse(localStorage.getItem('players')));
 // [ Object { name: "Tyler", score: 22 }, Object { name: "Ryan", score: 41 } ]
 ```
-> __Averiguar__: Límites de almacenamiento local en los navegadores
-
-### __Evento "storage"__
+### Evento "storage"
 Siempre que se establezca un valor en localStorage, se enviará un evento de `storage` en todas las demás `windows` desde el mismo origen. 
 
 Esto se puede usar para sincronizar el estado entre diferentes páginas sin recargar o comunicarse con un servidor.
@@ -224,8 +225,8 @@ window.addEventListener('storage', function(event) {
 > El evento no se activa ni se puede capturar en Chrome, Edge y Safari si el dominio se modificó mediante un script.
 
 ## SessionStorage
-El objeto sessionStorage implementa la misma interfaz que localStorage.  Pero tiene dos diferencias:
-- Los datos de SessionStorage se almacenan por separado para cada ventana
+El objeto `sessionStorage` implementa la misma interfaz que `localStorage`.  Pero tiene dos diferencias:
+- Los datos de `sessionStorage` se almacenan por separado para cada ventana
 - Los datos solo persisten durante el tiempo que están abiertas las ventanas.
 
 ```javascript

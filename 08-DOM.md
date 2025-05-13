@@ -2,27 +2,28 @@
 
 El DOM es una API para acceder y manipular los elementos de los documentos HTMl y XML. 
 
-Por otro lado el DOM se puede entender como la representación jerárquica (forma de árbol) de componentes (nodos) que representan el documento HTML. 
+Por otro lado el DOM se puede entender como la **representación jerárquica** (forma de árbol) **de componentes** (nodos) que representan **el documento HTML**. 
 
 Existen varios tipos de nodos:
 
 1. __Elemento__  -> se corresponde con una etiqueta HTML.
-2. __Texto__     -> Es el texto contenido dentro de un elemento.
+2. __Texto__     -> Es el texto dentro de un elemento.
 3. __Atributos__ -> Los atributos de los elementos.
 
-El componente de nivel superior (raiz) es `document`.
+El componente de nivel superior (raíz) es `document`.
 ```html
-<a href="#" id="link"> ir a <strong>Google</strong></a>
+<a href="www.google.com" id="link"> ir a <strong>Google</strong></a>
 ```
 
 ```javascript
 var a = document.getElementById("link");
 
 // Ver los nodos hijos de <a>
-console.log(a.childNodes);  //[Object Text "ir a", Object HtmlElement "strong"]
+console.log(a.childNodes);  //[object NodeList] (2)
+							//[#text,<strong/>]
 
 //accediendo al atributo
-a.href = "www.google.com.bo" 
+console.log(a.href)		// www.google.com
 ```
 ## Acceder a propiedades del document
 
@@ -51,13 +52,13 @@ links.primero  // devuelve el elemento que tiene el id="primero"
 ```
 
 
-> Para manipular los elementos del DOM, el _código JavaScript debe ejecutarse después de que el elemento se haya creado_.
+> **Importante**: Para manipular los elementos del DOM, el _código JavaScript debe ejecutarse después de que el elemento se haya creado_.
 
 ## Acceder a elementos
 
 Hay dos formas:
 
-1. __getElements__: obtiene elementos por tipo del tag, id o clase
+1. __getElements__: obtiene elementos mediante el tag, id o clase.
     ```javascript
     var p = document.getElementById('parrafo'); //retorna un solo elemento (objeto)
     
@@ -90,20 +91,20 @@ Hay dos formas:
     
     console.log(input.require) // retorna un boolean 
     ```
-    Con esta notación tambien se pueden __setear valores__.
+    Con esta notación también se pueden __setear valores__.
     ```javascript
     link.href = "www.google.com.bo"     // nuevo valor definido.
     ```
->  Los atributos __require, controls, etc. son atributos booleanos__, si se intenta acceder mediante `.getAttributes()`, retornará `""` (string vacio). En su lugar utilizar la notacion punto (accediendo como propiedad)
+>  Los atributos __require, controls, etc. son atributos booleanos__, si se intenta acceder mediante `.getAttributes()`, retornará `""` (string vacio). En su lugar utilizar la notación punto (accediendo como propiedad)
 
 
 
 ## Acceder a los nodos texto
 Existen 2 tipos: 
-- `.textContent`, obtiene todo el texto dentre el elemento incluyendo el texto de los hijos. 
-- `.value`  (para los elementos tipo input,button,textarea,etc)
+- `.textContent`, obtiene todo el texto dentro el elemento incluyendo el texto de los hijos. 
+- `.value`  (para los elementos tipo input, button, textarea, etc)
 
-la misma notación sirve para setear un valor.
+la misma notación sirve para *setear* un valor.
 
 ```html
 <a href="www.google.com" id="link"> ir a <strong>Google</strong></a>
@@ -210,8 +211,7 @@ p.removeAttribute('id');
 
 ### Modificar clases
 - `.className`  (devuelve un string con las clases)
-- `.classList` (devuelve un array con las clases), y tiene tres 
-  métodos:
+- `.classList` (devuelve un array con las clases), y tiene tres métodos:
     - `.add('clase')`      -> añade la clase
     - `.remove('clase')`   -> quita la clase
     - `.toggle('clase')`   -> añade la clase (si no la tenia) y se la quita (si es que la tenia).
@@ -238,10 +238,10 @@ parrafo.style.background = "red";
 // como get
 console.log(parrafo.style.background);
 ```
-> Estos estilos se añaden en linea (en el HTML), Evitar en lo posible.
+> Estos estilos se añaden (en el HTML) en tiempo de ejecución, **Evitar en lo posible**.
 
 ## Traversing
-Moverse atraves del DOM
+Moverse a través del DOM
 
 Propiedades
 

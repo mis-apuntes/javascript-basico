@@ -77,17 +77,17 @@ Es una __nueva sintaxis__ para __funciones anónimas__
             console.log("Función con un parámetro: "+param1);
         };
     ```
-- Si la funcion __no recibe parámetros__ se escriben los paréntesis vacios `()`
+- Si la función __no recibe parámetros__ se escriben los paréntesis vacios `()`
     ```javascript
     var miFuncion = () => {
             console.log("Función sin parámetros");
         };
     ```
-- Si la funcion __retorna un valor y__ solo tiene __una linea de código__, se omite `return` y las llaves `{ }` 
+- Si la función __retorna un valor y__ solo tiene __una linea de código__, se omite `return` y las llaves `{ }` 
     ```javascript
     var suma = (a,b) => a + b;
     ```
-- Si la funcion retorna un valor y tiene multiples lineas de código, se usa `return`
+- Si la función retorna un valor y tiene multiples lineas de código, se usa `return`
     ```javascript
     var texto = () => {
         var text = "";
@@ -95,7 +95,7 @@ Es una __nueva sintaxis__ para __funciones anónimas__
         return text;
     }
     ```
-- Si la función devuelve un objeto directamente, se indica entre paréntesis despues de la flecha.
+- Si la función devuelve un objeto directamente, se indica entre paréntesis después de la flecha.
     ```javascript
     var estudiante = (nombre,apellido) => ({
         nombre: nombre,
@@ -104,7 +104,7 @@ Es una __nueva sintaxis__ para __funciones anónimas__
     var est1 = estudiante("Andre", "Soto");
     ```
 ### Lexical this
-Dentro las funciones de flecha, `this` se refiere a su contexto (sin importar si está dentro de otra funcón)
+Dentro las funciones de flecha, `this` se refiere a su contexto (sin importar si está dentro de otra función)
 
 ```javascript
 function Persona(){

@@ -241,3 +241,16 @@ sumar(2, 3)      //5
 sumar(1, 4, 5)   //10
 ```
 
+## Funciones de primera clase
+
+Las funciones en *JavaScript* son objetos y por lo tanto es posible agregarles atributos.
+
+```javascript
+var miFn = function(){
+    // cuerpo de la funcion
+}
+
+miFn.atributo = "Hola soy un atributo"
+
+console.log(miFn.atributo)  // "Hola soy un atributo"
+```

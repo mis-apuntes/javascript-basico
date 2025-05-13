@@ -12,7 +12,7 @@ Javascript es un __lenguaje interpretado__ (no compilado, osea que no genera nin
 Los archivos *JavaScript* por sí solos no pueden ejecutarse directamente desde el navegador; Es necesario incrustarlos en un documento HTML.
 
 - **Opción 1**: (no recomendada) en el mismo documento
-    
+  
     ```html
     <!DOCTYPE html>
     <html>
@@ -24,7 +24,7 @@ Los archivos *JavaScript* por sí solos no pueden ejecutarse directamente desde 
     </html>
     ```
 - **Opción 2** (recomendada) hacer referencia a un archivo `.js` externo.
-    
+  
     ```html
     <!DOCTYPE html>
     <html>
@@ -441,3 +441,64 @@ var arrDoble = arr.map(function(elem) {
     return elem * 2 
 })  //[10.8.6.4.2]
 ```
+
+# Manejo de errores
+
+La forma normal
+
+```javascript
+try {
+    //Alguna instrucción sensible a dar error
+    //por ejm lectura de entradas, archivos, tipos de datas
+} catch(err) {
+    //Si ocurre algun error se ejecutará este bloque.
+    console.log(err)
+} finally {
+    // Este bloque es opcional.
+    //Las instrucciones de este bloque siempre se ejecutará
+}
+```
+
+Lanzar errores de forma intensionada.
+
+```javascript
+try {
+    // ...
+    if(hayErrores){
+        //Lanzando el error
+        throw new Error("Mensaje sobre el error.")
+    }
+} catch(err) {
+    console.log(err.message()) // ("Mensaje sobre el error."
+}
+```
+
+Lanzar errores personalizados
+
+```javascript
+try {
+    // ...
+    if(hayErrores){
+        //Lanzando el error
+        throw "Este es el mensaje de error" //enviando un string
+    }
+} catch(err) {
+    console.log(err) // ("Este es el mensaje de error"
+}
+
+// Tambien se puede enviar un objeto o funcion
+try {
+    // ...
+    if(hayErrores){
+        //Lanzando el error
+        throw {
+            tipo: 1,
+            mensaje: "mensaje de error"
+        }
+    }
+} catch(err) {
+    console.log(err.tipo) // 1
+    console.log(err.mensaje) // "mensaje de error""
+}
+```
+
