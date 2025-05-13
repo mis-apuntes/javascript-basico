@@ -14,7 +14,7 @@ var nombreFuncion = function() {    // Tipo por expresión
     // ...
 }
 ```
-## Return
+## Instrucción `return`
 
 Las funciones pueden o no retornar un valor o una función.
 
@@ -47,7 +47,7 @@ Las funciones pueden o no retornar un valor o una función.
 
 ## Parámetros de una función
 
-Las funciones pueden tener parámetros. Los PARÁMETROS son valores con los que la función trabajará.
+Los **parámetros** son valores que recibe una función y con los que la función trabajará.
 
 ```javascript
 function nombreFuncion(param1, param2) {
@@ -61,7 +61,7 @@ Los parámetros pueden ser:
 
 ## Invocar una función
 
-Para invocar, se llama por el nombre seguido `()`:
+Para invocar, se debe escribir el nombre de la función seguido de `()`
 
 ```js
 // Funciones sin parámetros
@@ -90,7 +90,7 @@ var result = nombreFunción();
 
 ## Scope de una variable
 
-El scope (o ámbito) es el contexto **generado por una función** y dentro del cual existen las variables que se hayan declarado dentro.
+El *scope* (o ámbito) es el contexto **generado por una función** y dentro del cual existen las variables que se hayan declarado dentro.
 
 - Una variable es inaccesible desde fuera de su scope (Fuera de su ámbito, no existen.).
 
@@ -98,13 +98,14 @@ El scope (o ámbito) es el contexto **generado por una función** y dentro del c
 var a = 10;     // scope es global
 
 function mifn(){
-    var b = 20  // scope local dentro la función
-    c = 30      // ¡scope glopal! (Ojo definido sin var)
+    var b = 20  // scope local dentro la función mifn
+    
+    c = 30      // ¡scope glopal! (definido sin var)
     //(NO ES RECOMENDADO DEFINIR VARIABLES ASI)
     
     function subFn() {
         var str = "hola "; //scope local dentro subFn
-        console.log(str)  //"hola"
+        
         console.log(b)    // 20
     }
 }
@@ -156,16 +157,23 @@ miFn2()[2]();	//9
 
 ## Funciones anónimas
 
-Son funciones que no tienen nombre
+Son funciones que no tienen nombre.
 ```javascript
-function () {
+function() {
     // ...
 }
-// como la llamamos o invocamos?
-// normalmente no se usa de esta manera.
+// como la invocamos?
 ```
 
+La utilidad de las funciones anónimas, es:
+
+- para encapsular variables.
+- definir *callbacks*
+
+### Encapsular variables
+
 Las funciones anónimas nos ayudan a __"encapsular" variables__, para __prevenir__ que códigos de terceros que tengan (casualmente) definido variables con el mismo nombre colisionen.
+
 ```javascript
 //libreria.js
 //suponiendo que la 'libreria.js' contiene lo siguiente:
@@ -176,12 +184,14 @@ var str = "b" // 'str' scope global, se añadirá al obj 'window'
 /*------------ Encapsulando las variables -----------*/
 //miCodigo.js
 (function() {
-    var str = 10  //'str' scope local, no será parte del obj 'window' 
-    console.log(str)  //10
+  var str = 10  //'str' scope local, NO se añadirá al obj 'window' 
+  console.log(str)  //10
 })()
-//con "()" indicamos que se autoejecuta la función.
 ```
-> **Recomendación**: nuestro código debe estar siempre dentro de una **función anónima auto-ejecutada**.
+- Como la función no tiene nombre, se la encierra entre `(function() {...})` y
+  añadimos `()` al final para auto-ejecutar la función.
+
+> **Nota**: es recomendable colocar nuestro código dentro de una **función anónima auto-ejecutada**.
 
 ### callbacks
 
@@ -194,7 +204,7 @@ function miFuncion(paramX, fn){
     fn()    //ejecutamos la funciòn (callback)
 }
 
-//invocando a "miFuncion()"
+//invocando a "miFuncion()" y enviamos una función anónima
 miFuncion("hola", function(){   
     // cuerpo de la función anónima
 })
@@ -202,7 +212,7 @@ miFuncion("hola", function(){
 
 ## arguments
 
-Cada función posee internamente un objeto llamado "arguments" que es un *pseudo array* que contiene a los valores que se le han pasado a la función.
+Cada función posee internamente un objeto llamado "arguments" (un *pseudo-array*) que contiene a los valores que se le han pasado a la función.
 
 > `arguments` es una variable local del prototipo de una función (creada automáticamente por JS).
 
@@ -230,63 +240,4 @@ sumar()          //0
 sumar(2, 3)      //5
 sumar(1, 4, 5)   //10
 ```
-
-## Funciones de primera clase
-
-Las funciones en *JavaScript* son objetos y por lo tanto es posible agregarles atributos.
-
-```javascript
-var miFn = function(){
-    // cuerpo de la funcion
-}
-
-miFn.atributo = "Hola soy un atributo"
-
-console.log(miFn.atributo)  // "Hola soy un atributo"
-```
-
-Las funciones también permiten definir Clases.
-
-```js
-function Example(a) {
-	this.atr1 = a;
-	this.fn = function() {
-		// sentencias
-	}
-}
-
-var c = new Example("hola");
-c.atr1;  // acceder a su atributo.
-c.fn();  // invocar su método.
-```
-
-## Hoisting
-
-El interprete de JS **eleva las variables** al inicio de su scope (pero no eleva su definición, o sea, su valor).
-
-Si bien se pueden definir funciones de dos formas (ambos son equivalentes):  
-
-+ `function mifn(){...}`   
-+ `var mifn = function(){...}`  
-
-Tienen cierta diferencia al momento de ser invocadas.
-
-```javascript
-//La funcion aun no esta definida, pero da correctamente
-saludar("Carlos")   // "Hola Carlos"
-
-function saludar(nombre) {
-    console.log("hola " + nombre)
-}
-
-// Caso 2
-despedirse("Luis")  //Error!
-
-var despedirse = function(nombre) {
-    console.log("Adios " + nombre)
-}
-//cuando se define funciones de esta manera, NO se elevan, porque todo lo que se define con "var" y lo que está despues de "=", no es tomado encuenta por javascript hasta que es invocado.
-```
-
- 
 
